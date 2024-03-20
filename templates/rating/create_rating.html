@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>{% trans "Realiza tu valoración" %}</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="score">{% trans "Puntuación:" %}</label>
+            <select class="form-control" id="score" name="score">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comment">{% trans "Deja tu comentario:" %}</label>
+            <input type="text" class="form-control" id="comment" name="comment">
+        </div>
+        <button type="submit" class="btn btn-primary">{% trans "Realizar Valoración" %}</button>
+    </form>
+</div>
+{% endblock %}

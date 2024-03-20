@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="jumbotron mt-4">
+    <h1 class="display-4">{% trans "Bienvenido a RollingDeals" %}</h1>
+    <p class="lead">{% trans "Tu lugar para coleccionar y subastar Hotwheels." %}</p>
+    <hr class="my-4">
+    <p>{% trans "Explora subastas únicas de Hotwheels y encuentra piezas raras y especiales." %}</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'auction' %}" role="button">{% trans "Explorar Subastas" %}</a>
+</div>
+
+<div class="row text-center">
+    <div class="col-lg-4 mb-4">
+        <img src="path_to_image" alt="Subastas Activas" class="rounded-circle mb-3" width="140" height="140">
+        <h2>{% trans "Subastas Activas" %}</h2>
+        <p>{% trans "Participa en subastas en vivo y obtén tus Hotwheels favoritos." %}</p>
+        <p><a class="btn btn-secondary" href="{% url 'auction' %}" role="button">{% trans "Ver detalles" %} &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 mb-4">
+        <img src="path_to_image" alt="Catálogo" class="rounded-circle mb-3" width="140" height="140">
+        <h2>{% trans "Catálogo" %}</h2>
+        <p>{% trans "Descubre todos los modelos disponibles y prepara tus próximas pujas." %}</p>
+        <p><a class="btn btn-secondary" href="{% url 'auction' %}" role="button">{% trans "Ver detalles" %} &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 mb-4">
+        <img src="path_to_image" alt="Subastas Concluidas" class="rounded-circle mb-3" width="140" height="140">
+        <h2>{% trans "Historial" %}</h2>
+        <p>{% trans "Revisa las subastas concluidas y los precios finales de los artículos." %}</p>
+        <p><a class="btn btn-secondary" href="{% url 'auction' %}" role="button">{% trans "Ver detalles" %} &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->
+{% endblock %}

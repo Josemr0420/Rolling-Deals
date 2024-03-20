@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>{% trans "¡Transacción Finalizada!" %}</h1>
+    <p>{% trans "La transacción ha sido finalizada con éxito." %}</p>
+    <div class="transaction-details">
+        <h2>{% trans "Detalles de la Transacción" %}</h2>
+        <p><strong>{% trans "Fecha:" %}</strong> {{ transaction.date }}</p>
+        <p><strong>{% trans "Detalles:" %}</strong> {{ transaction.details }}</p>
+    </div>
+    <button class="btn btn-primary" onclick="window.print()">{% trans "Imprimir" %}</button>
+</div>
+{% endblock %}
