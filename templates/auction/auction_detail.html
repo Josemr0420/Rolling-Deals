@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Tarjeta de la Subasta -->
+            <div class="card mb-4 shadow-sm">
+                {% if auction.hotwheel.image %}
+                    <img src="{{ auction.hotwheel.image.url }}" class="card-img-top" alt="{{ auction.hotwheel.model_name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ auction.hotwheel.model_name }}</h5>
+                    <p class="card-text">
+                        {{ auction.hotwheel.year_released }} - {{ auction.hotwheel.color }}<br>
+                        <strong>{% trans "Oferta inicial:" %}</strong> {{ auction.starting_bid }}<br>
+                        <strong>{% trans "Estado:" %}</strong> {{ auction.get_status_display }}<br>
+                        <strong>{% trans "Inicio:" %}</strong> {{ auction.start_time|date:"Y-m-d H:i" }}<br>
+                        <strong>{% trans "Finaliza:" %}</strong> {{ auction.end_time|date:"Y-m-d H:i" }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tarjeta de la Puja más Alta -->
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header">
+                    {% trans "Puja más alta actual" %}
+                </div>
+                <div class="card-body">
+                    {% if highest_bid %}
+                        <p class="card-text">
+                            <strong>{% trans "Cantidad:" %}</strong> {{ highest_bid.amount }}<br>
+                            <strong>{% trans "Puja realizada por:" %}</strong> {{ highest_bid.user.username }}
+                        </p>
+                    {% else %}
+                        <p class="card-text">{% trans "No hay pujas para esta subasta aún. Sé el primero en pujar!" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Formulario de Nueva Puja -->
+            {% if user.is_authenticated %}
+                <!-- Formulario de Nueva Puja para usuarios logueados -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Hacer una Puja" %}</h5>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.amount|as_crispy_field }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">{% trans "Puja" %}</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Mensaje y botones para usuarios no logueados -->
+                <div class="alert alert-info" role="alert">
+                    {% trans "Debes iniciar sesión o registrarte para hacer una puja." %}
+                </div>
+                <a href="{% url 'login' %}" class="btn btn-primary">{% trans "Iniciar sesión" %}</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary">{% trans "Registrarse" %}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

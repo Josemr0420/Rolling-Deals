@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n widget_tweaks %}
+
+{% block title %}
+	{% trans "Iniciar sesión" %}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3 pt-5">
+    <h2 class="mb-3">{% trans "Registrarse" %}</h2>
+    <div class="mx-auto w-75 p-3">
+        <form method="post" class="needs-validation">
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+            {% csrf_token %}
+            <div class="form-group mt-2">
+                {{ form.username.label_tag }}
+                {{ form.username|add_class:"form-control" }}
+                {% for error in form.username.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group mt-2">
+                {{ form.email.label_tag }}
+                {{ form.email|add_class:"form-control" }}
+                {% for error in form.email.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group mt-2">
+                {{ form.password1.label_tag }}
+                {{ form.password1|add_class:"form-control" }}
+                {% for error in form.password1.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group mt-2">
+                {{ form.password2.label_tag }}
+                {{ form.password2|add_class:"form-control" }}
+                {% for error in form.password2.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">{% trans "Registrarse" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
