@@ -23,9 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('apps.user_management.urls')),
-    path('search/', include('apps.auction.urls'))
+    path('search/', include('apps.auction.urls')),
+    path('api/', include('apps.api.urls'))
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
