@@ -188,7 +188,6 @@ El modelo `Auction` representa una subasta para un Hot Wheel. Incluye los siguie
 ### Notas
 
 - La API actualmente solo admite el método `GET` para recuperar información.
-- Asegúrese de tener los permisos adecuados para acceder a la API.
 - Las URL de las imágenes proporcionadas en la respuesta se pueden usar para mostrar imágenes de los Hot Wheels.
     
 ## Licencia
